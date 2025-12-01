@@ -1,0 +1,7 @@
+services:
+  ginapp:
+    image: almuko/a1:latest
+    container_name: ginapp
+    restart: always
+    ports:
+      - "8080:8080"
