@@ -1,13 +1,10 @@
 name: Deploy Go Gin App
-
 on:
   push:
     branches: ["main"]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,7 +30,23 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
+            sudo mkdir -p /opt/a1
+            sudo chown almuko:almuko /opt/a1
+
             cd /opt/a1
+
+            # Создаём docker-compose.yml, если нет
+            if [ ! -f docker-compose.yml ]; then
+              echo "services:" > docker-compose.yml
+              echo "  ginapp:" >> docker-compose.yml
+              echo "    image: almuko/a1:latest" >> docker-compose.yml
+              echo "    container_name: ginapp" >> docker-compose.yml
+              echo "    restart: always" >> docker-compose.yml
+              echo "    ports:" >> docker-compose.yml
+              echo "      - \"8080:8080\"" >> docker-compose.yml
+            fi
+
+            # Перезапуск контейнера
             docker pull almuko/a1:latest
-            docker compose down
-            docker compose up -d
+            docker compose down || true
+            docker compose up -d || true
