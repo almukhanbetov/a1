@@ -1,0 +1,42 @@
+# Binaries
+/app
+app
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of tests
+*.out
+
+# Vendor (if not used)
+vendor/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+
+# IDE / Editor
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Docker
+docker-compose.override.yml
+
+# Backups
+*.bak
