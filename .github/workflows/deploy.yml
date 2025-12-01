@@ -38,9 +38,9 @@ jobs:
             # Создаём docker-compose.yml, если нет
             if [ ! -f docker-compose.yml ]; then
               echo "services:" > docker-compose.yml
-              echo "  ginapp:" >> docker-compose.yml
+              echo "  a1:" >> docker-compose.yml
               echo "    image: almuko/a1:latest" >> docker-compose.yml
-              echo "    container_name: ginapp" >> docker-compose.yml
+              echo "    container_name: a1" >> docker-compose.yml
               echo "    restart: always" >> docker-compose.yml
               echo "    ports:" >> docker-compose.yml
               echo "      - \"8080:8080\"" >> docker-compose.yml
